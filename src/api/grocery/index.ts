@@ -1,24 +1,32 @@
 import DataFetcher from "api";
 import { TGroceryListItem } from "types/grocery";
 
-const getLists = async () => {
-  return DataFetcher.get("/groceries");
-};
+const getLists = async () =>
+  DataFetcher.get("/groceries").catch((err) => {
+    console.warn("GET Error groceries", err);
+    return [];
+  });
 
-const getListById = async (id: string) => {
-  return DataFetcher.get(`/groceries/${id}`);
-};
+const getListById = async (id: string) =>
+  DataFetcher.get(`/groceries/${id}`).catch((err) => {
+    console.warn("GET Error groceries", err);
+    return null;
+  });
 
-const removeList = async (id: string) => {
-  return DataFetcher.delete(`/groceries/${id}`);
-};
+const removeList = async (id: string) =>
+  DataFetcher.delete(`/groceries/${id}`).catch((err) => {
+    console.warn("Remove Error groceries", err);
+    return {};
+  });
 
-const addList = async (body: Record<string, any>) => {
-  return DataFetcher.post(`/groceries`, body);
-};
+const addList = async (body: Record<string, any>) =>
+  DataFetcher.post(`/groceries`, body).catch((err) => {
+    console.warn("Remove Error groceries", err);
+    return null;
+  });
 
-const addListItem = async (id: string, previousList: TGroceryListItem[]) => {
-  return DataFetcher.patch(`/groceries/${id}`, {
+const addListItem = async (id: string, previousList: TGroceryListItem[]) =>
+  DataFetcher.patch(`/groceries/${id}`, {
     list: [
       ...previousList,
       {
@@ -29,7 +37,6 @@ const addListItem = async (id: string, previousList: TGroceryListItem[]) => {
       },
     ],
   });
-};
 
 const removeListItem = async (
   id: string,
@@ -45,6 +52,9 @@ const removeListItem = async (
 const updateListItems = async (id: string, newList: TGroceryListItem[]) =>
   DataFetcher.patch(`/groceries/${id}`, {
     list: newList,
+  }).catch((err) => {
+    console.warn("Remove Error groceries", err);
+    return null;
   });
 
 export default {

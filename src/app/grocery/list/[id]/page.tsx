@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import groceryAPI from "api/grocery";
+import notFound from "app/not-found";
 import { TNextPage } from "types";
 
 import GroceryList from "pages/GroceryList";
@@ -18,7 +19,7 @@ export async function generateMetadata(
   const res = await loadingDate(id);
 
   return {
-    title: `Gojl - ${res.name ?? ""} | Grocery list`,
+    title: `Gojl - ${res?.name ?? ""} | Grocery list`,
   };
 }
 
@@ -27,6 +28,10 @@ export default async function (props: TNextPage<{ id: string }>) {
   const { id } = params;
 
   const res = await loadingDate(id);
+
+  if (!res) {
+    return notFound();
+  }
 
   return <GroceryList groceryList={res} />;
 }

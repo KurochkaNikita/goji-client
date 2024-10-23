@@ -20,7 +20,7 @@ function AddButton() {
     onSuccess: (newValue: TGroceryList) => {
       queryClient.setQueryData([queryKey.lists], (old: TGroceryList[]) => [
         ...old,
-        newValue,
+        ...(newValue && [newValue]),
       ]);
     },
   });

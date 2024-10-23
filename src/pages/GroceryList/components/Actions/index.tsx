@@ -1,7 +1,9 @@
 import { useParams } from "next/navigation";
 import IconRemove from "@mui/icons-material/Delete";
 import IconEdit from "@mui/icons-material/Edit";
-import { ListItemIcon, Menu, MenuItem } from "@mui/material";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import groceryAPI from "api/grocery";
 import { TGroceryList, TGroceryListItem } from "types/grocery";

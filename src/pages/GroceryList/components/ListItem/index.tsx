@@ -1,8 +1,9 @@
 import { memo, MouseEvent } from "react";
-import { ListItemIcon, Paper } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import MUIListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Paper from "@mui/material/Paper";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import groceryAPI from "api/grocery";
 import { TGroceryList, TGroceryListItem } from "types/grocery";

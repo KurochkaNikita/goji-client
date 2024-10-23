@@ -4,7 +4,6 @@ import { MouseEvent, useEffect, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid2";
-import Typography from "@mui/material/Typography";
 import { useQuery } from "@tanstack/react-query";
 import groceryAPI from "api/grocery";
 import { TBreadcrumbs } from "types";
@@ -13,6 +12,7 @@ import { TGroceryList } from "types/grocery";
 import Breadcrumbs from "components/Breadcrumbs";
 import Loading from "components/Loading";
 import queryKey from "constants/query";
+import Title from "pages/GroceryList/components/Title";
 
 import Actions from "./components/Actions";
 import ListItems from "./components/ListItems";
@@ -38,7 +38,7 @@ function GroceryList(props: GroceryListProps) {
     initialData: groceryList,
   });
 
-  const { name } = data || {};
+  const { name } = data;
 
   const handleCloseActions = () => setAnchorEl(null);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -61,7 +61,7 @@ function GroceryList(props: GroceryListProps) {
   }, [anchorEl, isModalOpen]);
 
   if (isLoading) return <Loading />;
-  if (error) return <div>Something went wrong</div>;
+  if (error || !data) return <div>Something went wrong</div>;
 
   const breadcrumbs: TBreadcrumbs[] = [
     { link: "/grocery/lists", label: "Grocery lists" },
@@ -71,9 +71,7 @@ function GroceryList(props: GroceryListProps) {
     <>
       <Grid container spacing={2}>
         <Breadcrumbs items={breadcrumbs} currentPage={name} />
-        <Typography variant="h3" component="h2">
-          {name}
-        </Typography>
+        <Title title={name} />
         <ListItems handleOpenActions={handleOpenActions} />
         <Button
           startIcon={<AddIcon />}

@@ -39,7 +39,7 @@ function Modal(props: IModal) {
         [`${queryKey.lists}/${id}`],
         (old: TGroceryList[]) => ({
           ...old,
-          list: newValue.list,
+          list: Array.isArray(newValue?.list) ? newValue?.list : list,
         })
       );
     },
