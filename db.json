@@ -1,0 +1,33 @@
+{
+  "groceries": [
+    {
+      "id": "0031b144-86ee-4121-a23b-f47a872b878f",
+      "name": "new list",
+      "list": [
+        {
+          "id": "635881d8-ed79-484d-978a-0a6968c91487",
+          "title": "sadasd",
+          "amount": 21,
+          "completed": false
+        },
+        {
+          "id": "f4793d03-680b-465a-a51c-51d17da53661",
+          "title": "qwe",
+          "amount": 0,
+          "completed": true
+        },
+        {
+          "id": "176f1c7e-b101-4a07-b47b-a09013632469",
+          "title": "qwe _asd ",
+          "amount": 120,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "id": "69abbf7e-b02b-4064-968f-f40a9045707f",
+      "name": "new list",
+      "list": []
+    }
+  ]
+}

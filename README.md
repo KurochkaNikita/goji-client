@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
+yarn install
+
+yarn server
+
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Task Description 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Here are user stories that should be covered:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- As a user, I can view my grocery list
 
-## Learn More
+- As a user, I can add, edit and delete items to my grocery list
 
-To learn more about Next.js, take a look at the following resources:
+- As a user, I can add an amount to each item in the list
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- As a user, I can mark an item as bought. This will cross out the title and mark the checkbox as checked.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Technical requirements:
 
-## Deploy on Vercel
+- For this task, we want to use NextJS as a framework
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Layouts are not strict, but the website should look good on desktop and mobile
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Please use JSON-server (https://www.npmjs.com/package/json-server) and React query (https://tanstack.com/query/latest/docs/react/quick-start) to mock an API integration
+
+- MUI usage to build layouts
+
+### Not required, but it will be a benefit
+
+- Any additional functionality
+
+- Server-side rendering examples

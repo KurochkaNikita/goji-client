@@ -44,6 +44,7 @@
             "groups": [
               [
                 "^react",
+                "^next",
                 "^@?\\w"
               ],
               [
@@ -72,6 +73,11 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "import/extensions": "off",
+    "import/ no-unresolved": "off",
+    "func-names": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off"
   }
 }
