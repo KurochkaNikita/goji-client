@@ -1,5 +1,5 @@
 import { memo, MouseEvent } from "react";
-import { ListItemIcon } from "@mui/material";
+import { ListItemIcon, Paper } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import MUIListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -60,25 +60,27 @@ function ListItem(props: IListItem) {
   };
 
   return (
-    <MUIListItem
-      secondaryAction={<SettingAction onClick={handleOpenActions(id)} />}
-    >
-      <ListItemIcon>
-        <Checkbox
-          edge="start"
-          checked={completed}
-          tabIndex={-1}
-          disableRipple
-          inputProps={{ "aria-labelledby": key }}
-          onClick={checkedItem(id)}
+    <Paper elevation={2}>
+      <MUIListItem
+        secondaryAction={<SettingAction onClick={handleOpenActions(id)} />}
+      >
+        <ListItemIcon>
+          <Checkbox
+            edge="start"
+            checked={completed}
+            tabIndex={-1}
+            disableRipple
+            inputProps={{ "aria-labelledby": key }}
+            onClick={checkedItem(id)}
+          />
+        </ListItemIcon>
+        <ListItemText
+          id={key}
+          primary={<div style={{ textDecoration }}>{title}</div>}
+          secondary={amount !== 0 ? amount : undefined}
         />
-      </ListItemIcon>
-      <ListItemText
-        id={key}
-        primary={<div style={{ textDecoration }}>{title}</div>}
-        secondary={amount !== 0 ? amount : undefined}
-      />
-    </MUIListItem>
+      </MUIListItem>
+    </Paper>
   );
 }
 

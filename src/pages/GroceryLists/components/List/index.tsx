@@ -1,5 +1,5 @@
 import MUIList from "@mui/material/List";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import groceryAPI from "api/grocery";
 import { TGroceryList } from "types/grocery";
 
@@ -9,7 +9,10 @@ import GroceryListItem from "../ListItem";
 
 function List() {
   const queryClient = useQueryClient();
-  const data = queryClient.getQueryData([queryKey.lists]) as TGroceryList[];
+
+  const { data } = useQuery<TGroceryList[]>({
+    queryKey: [queryKey.lists],
+  });
 
   const removeListMutation = useMutation({
     mutationKey: [queryKey.lists],
