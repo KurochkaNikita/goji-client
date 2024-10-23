@@ -4,61 +4,25 @@ import MUIListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import groceryAPI from "api/grocery";
-import { TGroceryList, TGroceryListItem } from "types/grocery";
 
 import SettingAction from "components/SettingAction";
-import queryKey from "constants/query";
 
 interface IListItem {
   id: string;
   title: string;
   amount: number;
   completed: boolean;
+  checkedItem: () => void;
   handleOpenActions: (
     itemId: string
   ) => (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 function ListItem(props: IListItem) {
-  const { id, completed, amount, title, handleOpenActions } = props;
-  const queryClient = useQueryClient();
+  const { id, completed, amount, title, handleOpenActions, checkedItem } =
+    props;
   const key = `${id}-checkbox-${completed}`;
   const textDecoration = completed ? "line-through" : "none";
-
-  const data = queryClient.getQueryData([
-    `${queryKey.lists}/${id}`,
-  ]) as TGroceryList;
-  const { list } = data ?? { list: [] };
-
-  const updateItemsMutation = useMutation({
-    mutationKey: [`${queryKey.lists}/${id}`],
-    mutationFn: (newList: TGroceryListItem[]) =>
-      groceryAPI.updateListItems(id, newList),
-    onSuccess: (newValue: TGroceryList) => {
-      queryClient.setQueryData(
-        [`${queryKey.lists}/${id}`],
-        (old: TGroceryList[]) => ({
-          ...old,
-          list: newValue.list,
-        })
-      );
-    },
-  });
-
-  const checkedItem = (itemId: string) => () => {
-    const newLists: TGroceryListItem[] = list.map((task: TGroceryListItem) => {
-      if (task.id === itemId) {
-        return {
-          ...task,
-          completed: !task.completed,
-        };
-      }
-      return task;
-    });
-    updateItemsMutation.mutate(newLists);
-  };
 
   return (
     <Paper elevation={2}>
@@ -72,7 +36,7 @@ function ListItem(props: IListItem) {
             tabIndex={-1}
             disableRipple
             inputProps={{ "aria-labelledby": key }}
-            onClick={checkedItem(id)}
+            onClick={checkedItem}
           />
         </ListItemIcon>
         <ListItemText
@@ -87,5 +51,9 @@ function ListItem(props: IListItem) {
 
 export default memo(
   ListItem,
-  (prevProps, nextProps) => prevProps.id === nextProps.id
+  (prevProps, nextProps) =>
+    prevProps.id === nextProps.id &&
+    prevProps.completed === nextProps.completed &&
+    prevProps.title === nextProps.title &&
+    prevProps.amount === nextProps.amount
 );

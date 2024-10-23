@@ -2,7 +2,8 @@ import { MouseEvent } from "react";
 import { useParams } from "next/navigation";
 import Grid from "@mui/material/Grid2";
 import List from "@mui/material/List";
-import { useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import groceryAPI from "api/grocery";
 import { TGroceryList, TGroceryListItem } from "types/grocery";
 
 import queryKey from "constants/query";
@@ -16,16 +17,40 @@ interface IListItems {
 }
 
 function ListItems(props: IListItems) {
-  const { handleOpenActions } = props;
   const queryClient = useQueryClient();
+  const { handleOpenActions } = props;
 
   const params = useParams<{ id: string }>();
   const { id } = params || { id: "" };
 
-  const data = queryClient.getQueryData([
-    `${queryKey.lists}/${id}`,
-  ]) as TGroceryList;
-  const { list } = data;
+  const { data } = useQuery<TGroceryList>({
+    queryKey: [`${queryKey.lists}/${id}`],
+  });
+
+  const { list } = data ?? { list: [] };
+
+  const updateItemsMutation = useMutation({
+    mutationKey: [`${queryKey.lists}/${id}`],
+    mutationFn: (newList: TGroceryListItem[]) =>
+      groceryAPI.updateListItems(id, newList),
+    onSuccess: (newValue: TGroceryList) => {
+      console.log("newValue.list", newValue.list);
+      queryClient.setQueryData([`${queryKey.lists}/${id}`], () => newValue);
+    },
+  });
+
+  const checkedItem = (itemId: string) => () => {
+    const newLists: TGroceryListItem[] = list.map((task: TGroceryListItem) => {
+      if (task.id === itemId) {
+        return {
+          ...task,
+          completed: !task.completed,
+        };
+      }
+      return task;
+    });
+    updateItemsMutation.mutate(newLists);
+  };
 
   return (
     <Grid size={12}>
@@ -38,6 +63,7 @@ function ListItems(props: IListItems) {
             amount={task.amount}
             title={task.title}
             handleOpenActions={handleOpenActions}
+            checkedItem={checkedItem(task.id)}
           />
         ))}
       </List>
