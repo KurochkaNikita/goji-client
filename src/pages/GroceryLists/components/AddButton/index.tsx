@@ -11,7 +11,12 @@ function AddButton() {
 
   const addListMutation = useMutation({
     mutationKey: [queryKey.lists],
-    mutationFn: groceryAPI.addList,
+    mutationFn: () =>
+      groceryAPI.addList({
+        id: crypto.randomUUID(),
+        name: `New list`,
+        list: [],
+      }),
     onSuccess: (newValue: TGroceryList) => {
       queryClient.setQueryData([queryKey.lists], (old: TGroceryList[]) => [
         ...old,

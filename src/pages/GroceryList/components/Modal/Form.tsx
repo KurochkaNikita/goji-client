@@ -35,7 +35,7 @@ function Form(props: IForm) {
         variant="outlined"
         margin="dense"
         error={!!errors.title}
-        helperText={errors.title ? "Enter title" : undefined}
+        helperText={errors.title?.message}
         fullWidth
       />
       <TextField
@@ -45,9 +45,7 @@ function Form(props: IForm) {
         variant="outlined"
         margin="normal"
         error={!!errors.amount}
-        helperText={
-          errors.amount ? "Please enter number or stay empty" : undefined
-        }
+        helperText={errors.amount?.message}
         fullWidth
       />
       <Button

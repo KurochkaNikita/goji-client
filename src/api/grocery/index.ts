@@ -13,12 +13,7 @@ const removeList = async (id: string) => {
   return DataFetcher.delete(`/groceries/${id}`);
 };
 
-const addList = async () => {
-  const body = {
-    id: crypto.randomUUID(),
-    name: "new list",
-    list: [],
-  };
+const addList = async (body: Record<string, any>) => {
   return DataFetcher.post(`/groceries`, body);
 };
 

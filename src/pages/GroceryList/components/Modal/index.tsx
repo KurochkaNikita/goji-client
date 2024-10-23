@@ -6,6 +6,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import groceryAPI from "api/grocery";
 import { ListItemForm, TGroceryList, TGroceryListItem } from "types/grocery";
 
+import queryKey from "constants/query";
+
 import Form from "./Form";
 import classes from "./styles";
 
@@ -21,44 +23,44 @@ function Modal(props: IModal) {
   const { id } = params || { id: "" };
 
   const queryClient = useQueryClient();
-  const data = queryClient.getQueryData([`lists/${id}`]) as TGroceryList;
+  const data = queryClient.getQueryData([
+    `${queryKey.lists}/${id}`,
+  ]) as TGroceryList;
   const { list } = data;
 
   const defaultFormValue = list.find((task) => task.id === itemId);
 
   const updateItemsMutation = useMutation({
-    mutationKey: [`lists/${id}`],
+    mutationKey: [`${queryKey.lists}/${id}`],
     mutationFn: (newList: TGroceryListItem[]) =>
       groceryAPI.updateListItems(id, newList),
     onSuccess: (newValue: TGroceryList) => {
-      queryClient.setQueryData([`lists/${id}`], (old: TGroceryList[]) => ({
-        ...old,
-        list: newValue.list,
-      }));
+      queryClient.setQueryData(
+        [`${queryKey.lists}/${id}`],
+        (old: TGroceryList[]) => ({
+          ...old,
+          list: newValue.list,
+        })
+      );
     },
   });
 
   const handlerItem = (values: ListItemForm) => {
-    let newLists: TGroceryListItem[] = [...list];
-    if (itemId) {
-      newLists = newLists.map((item) => {
-        if (item.id === itemId) {
-          return {
-            ...item,
-            title: values.title as string,
-            amount: (values.amount ?? 0) as number,
-          };
-        }
-        return item;
-      });
-    } else {
-      newLists.push({
-        id: crypto.randomUUID(),
-        title: values.title as string,
-        amount: (values.amount ?? 0) as number,
-        completed: false,
-      });
-    }
+    const { title = "", amount = 0 } = values;
+
+    const updatedItem: TGroceryListItem = {
+      id: itemId || crypto.randomUUID(),
+      title,
+      amount,
+      completed: itemId
+        ? list.find((item) => item.id === itemId)?.completed ?? false
+        : false,
+    };
+
+    const newLists = itemId
+      ? list.map((item) => (item.id === itemId ? updatedItem : item))
+      : [...list, updatedItem];
+
     updateItemsMutation.mutate(newLists);
     onClose();
   };
@@ -70,12 +72,10 @@ function Modal(props: IModal) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <>
-        <Box sx={classes.modal}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {itemId ? "Create a new item" : "Update the task"}
-          </Typography>
-        </Box>
+      <Box sx={classes.modal}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          {itemId ? "Create a new item" : "Update the task"}
+        </Typography>
         {open && (
           <Form
             title={defaultFormValue?.title ?? ""}
@@ -83,7 +83,7 @@ function Modal(props: IModal) {
             handlerForm={handlerItem}
           />
         )}
-      </>
+      </Box>
     </MUIModal>
   );
 }

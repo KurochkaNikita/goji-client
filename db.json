@@ -21,12 +21,23 @@
           "title": "qwe _asd ",
           "amount": 120,
           "completed": true
+        },
+        {
+          "id": "5850f2aa-a777-4806-9f84-d250d2da6367",
+          "title": "buy  23",
+          "amount": 232,
+          "completed": false
         }
       ]
     },
     {
-      "id": "69abbf7e-b02b-4064-968f-f40a9045707f",
-      "name": "new list",
+      "id": "2ee94ae0-614a-4744-bc9a-02b7fea04781",
+      "name": "New list",
+      "list": []
+    },
+    {
+      "id": "acff7564-090e-4966-8883-d8d5a4466e34",
+      "name": "New list",
       "list": []
     }
   ]
