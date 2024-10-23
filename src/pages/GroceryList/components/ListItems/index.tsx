@@ -34,21 +34,34 @@ function ListItems(props: IListItems) {
     mutationFn: (newList: TGroceryListItem[]) =>
       groceryAPI.updateListItems(id, newList),
     onSuccess: (newValue: TGroceryList) => {
-      console.log("newValue.list", newValue.list);
-      queryClient.setQueryData([`${queryKey.lists}/${id}`], () => newValue);
+      queryClient.setQueryData(
+        [`${queryKey.lists}/${id}`],
+        (old: TGroceryList) => ({
+          ...old,
+          list: Array.isArray(newValue?.list) ? newValue?.list : list,
+        })
+      );
     },
   });
 
   const checkedItem = (itemId: string) => () => {
-    const newLists: TGroceryListItem[] = list.map((task: TGroceryListItem) => {
-      if (task.id === itemId) {
-        return {
-          ...task,
-          completed: !task.completed,
-        };
+    const currentState = queryClient.getQueryData<TGroceryList>([
+      `${queryKey.lists}/${id}`,
+    ]);
+
+    const currentList = currentState?.list ?? [];
+
+    const newLists: TGroceryListItem[] = currentList.map(
+      (task: TGroceryListItem) => {
+        if (task.id === itemId) {
+          return {
+            ...task,
+            completed: !task.completed,
+          };
+        }
+        return task;
       }
-      return task;
-    });
+    );
     updateItemsMutation.mutate(newLists);
   };
 

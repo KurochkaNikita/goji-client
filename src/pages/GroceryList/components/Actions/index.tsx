@@ -4,7 +4,7 @@ import IconEdit from "@mui/icons-material/Edit";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import groceryAPI from "api/grocery";
 import { TGroceryList, TGroceryListItem } from "types/grocery";
 
@@ -23,10 +23,11 @@ function Actions(props: IActions) {
   const params = useParams<{ id: string }>();
   const { id } = params || { id: "" };
   const queryClient = useQueryClient();
-  const data = queryClient.getQueryData([
-    `${queryKey.lists}/${id}`,
-  ]) as TGroceryList;
-  const { list } = data;
+
+  const { data } = useQuery<TGroceryList>({
+    queryKey: [`${queryKey.lists}/${id}`],
+  });
+  const { list } = data ?? { list: [] };
 
   const updateItemsMutation = useMutation({
     mutationKey: [`${queryKey.lists}/${id}`],

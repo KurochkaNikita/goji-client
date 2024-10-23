@@ -2,7 +2,7 @@ import { useParams } from "next/navigation";
 import Box from "@mui/material/Box";
 import MUIModal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import groceryAPI from "api/grocery";
 import { ListItemForm, TGroceryList, TGroceryListItem } from "types/grocery";
 
@@ -23,10 +23,11 @@ function Modal(props: IModal) {
   const { id } = params || { id: "" };
 
   const queryClient = useQueryClient();
-  const data = queryClient.getQueryData([
-    `${queryKey.lists}/${id}`,
-  ]) as TGroceryList;
-  const { list } = data;
+
+  const { data } = useQuery<TGroceryList>({
+    queryKey: [`${queryKey.lists}/${id}`],
+  });
+  const { list } = data ?? { list: [] };
 
   const defaultFormValue = list.find((task) => task.id === itemId);
 
@@ -37,7 +38,7 @@ function Modal(props: IModal) {
     onSuccess: (newValue: TGroceryList) => {
       queryClient.setQueryData(
         [`${queryKey.lists}/${id}`],
-        (old: TGroceryList[]) => ({
+        (old: TGroceryList) => ({
           ...old,
           list: Array.isArray(newValue?.list) ? newValue?.list : list,
         })
