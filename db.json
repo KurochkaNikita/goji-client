@@ -2,43 +2,116 @@
   "groceries": [
     {
       "id": "0031b144-86ee-4121-a23b-f47a872b878f",
-      "name": "new list",
+      "name": "Holiday wish list",
       "list": [
         {
           "id": "635881d8-ed79-484d-978a-0a6968c91487",
-          "title": "sadasd",
-          "amount": 21,
+          "title": "Smart Mug x5",
+          "amount": 105,
           "completed": false
         },
         {
           "id": "f4793d03-680b-465a-a51c-51d17da53661",
-          "title": "qwe",
+          "title": "Personalized Puzze",
           "amount": 0,
+          "completed": false
+        },
+        {
+          "id": "94724ea0-3503-4722-8382-4645bc2b2b6a",
+          "title": "Gourmet Chocolate Gift Box",
+          "amount": 40,
           "completed": true
         },
         {
-          "id": "176f1c7e-b101-4a07-b47b-a09013632469",
-          "title": "qwe _asd ",
-          "amount": 120,
+          "id": "a7d73df0-3c5b-4fdc-9e64-ec4077f20e6f",
+          "title": "Customized Leather Notebook",
+          "amount": 50,
           "completed": true
         },
         {
-          "id": "5850f2aa-a777-4806-9f84-d250d2da6367",
-          "title": "buy  23",
-          "amount": 232,
+          "id": "233f9f41-483f-4ffb-bf81-513e2c57d9b8",
+          "title": "PS 5 Pro",
+          "amount": 710,
           "completed": false
         }
       ]
     },
     {
-      "id": "2ee94ae0-614a-4744-bc9a-02b7fea04781",
-      "name": "New list",
+      "id": "ebe4cd23-2559-4ac0-b84c-df928fb45b0f",
+      "name": "For Grand mom",
       "list": []
     },
     {
-      "id": "acff7564-090e-4966-8883-d8d5a4466e34",
-      "name": "New list",
-      "list": []
+      "id": "ebe4cd23-2559-4ac0-b84c-df928fb45b0d",
+      "name": "Interview step",
+      "list": [
+        {
+          "id": "b30db50a-341a-481e-a725-98444a990bad",
+          "title": "First Interview",
+          "amount": 0,
+          "completed": true
+        },
+        {
+          "id": "5f0ab75b-3b59-4580-9ab9-f9acc3cd67f7",
+          "title": "Tech interiew",
+          "amount": 0,
+          "completed": true
+        },
+        {
+          "id": "754cf55d-7b26-4058-a20c-6523473094f9",
+          "title": "Tech Task",
+          "amount": 0,
+          "completed": false
+        },
+        {
+          "id": "83a9e9e2-4362-4fd0-a58a-2a146e3dd5dc",
+          "title": "Next Interview",
+          "amount": 0,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "ef0a4151-5607-4d2f-bbc0-c01a676c5502",
+      "name": "Test list",
+      "list": [
+        {
+          "id": "dd59bc01-c292-4c76-90c9-3b41e99b06a3",
+          "title": "Test 1",
+          "amount": 0,
+          "completed": false
+        },
+        {
+          "id": "768a3840-1b4b-40c9-bc81-ea45395987bd",
+          "title": "Test 2",
+          "amount": 0,
+          "completed": false
+        },
+        {
+          "id": "deaa79ee-2d74-4294-8461-59f82cdcacee",
+          "title": "Test 3",
+          "amount": 0,
+          "completed": true
+        },
+        {
+          "id": "3ce775b5-6f75-4bd4-9c09-a0f272d27ef5",
+          "title": "Test 4",
+          "amount": 0,
+          "completed": true
+        },
+        {
+          "id": "dfa8ecc4-34b7-4dd5-a442-4ee07d3138f7",
+          "title": "Test 5",
+          "amount": 0,
+          "completed": false
+        },
+        {
+          "id": "1c3afff6-7daa-429a-b890-ef3e46283e5a",
+          "title": "Test 6",
+          "amount": 100,
+          "completed": true
+        }
+      ]
     }
   ]
 }
