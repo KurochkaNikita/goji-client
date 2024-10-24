@@ -33,4 +33,10 @@ describe("Utilities", () => {
     const text = getProgressList(taskList);
     expect(text).toBe("2/2 complited");
   });
+
+  it("getProgressList call without params", () => {
+    const taskList: TGroceryListItem[] = [];
+    const text = getProgressList(taskList);
+    expect(text).toBe("Empty list");
+  });
 });
