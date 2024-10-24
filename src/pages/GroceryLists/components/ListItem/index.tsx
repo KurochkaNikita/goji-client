@@ -6,6 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { TGroceryList, TGroceryListItem } from "types/grocery";
 
 import RemoveAction from "components/RemoveAction";
+import { GROCERY_LIST } from "constants/route";
 
 import classes from "./styles";
 
@@ -32,7 +33,7 @@ function GroceryListItem(props: IGroceryListItem) {
 
   return (
     <Card variant="outlined" style={classes.container}>
-      <Link href={`/grocery/list/${id}`} prefetch>
+      <Link href={`${GROCERY_LIST}/${id}`} prefetch>
         <ListItem
           divider
           style={{ width: "100%" }}

@@ -12,6 +12,7 @@ import { TGroceryList } from "types/grocery";
 import Breadcrumbs from "components/Breadcrumbs";
 import Loading from "components/Loading";
 import queryKey from "constants/query";
+import { GROCERY_LISTS } from "constants/route";
 import Title from "pages/GroceryList/components/Title";
 
 import Actions from "./components/Actions";
@@ -64,7 +65,7 @@ function GroceryList(props: GroceryListProps) {
   if (error || !data) return <div>Something went wrong</div>;
 
   const breadcrumbs: TBreadcrumbs[] = [
-    { link: "/grocery/lists", label: "Grocery lists" },
+    { link: GROCERY_LISTS, label: "Grocery lists" },
   ];
 
   return (
