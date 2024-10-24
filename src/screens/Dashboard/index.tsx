@@ -109,13 +109,11 @@ function Dashboard() {
               <mark>grocery/list/:id</mark>. Each route uses a different page
               loading strategy:
             </Typography>
-
             <br />
             <Typography variant="h6">
               <mark>grocery/lists</mark>- this page loads data from the client
               side.
             </Typography>
-
             <Typography>
               <b>Advantages</b>
             </Typography>
@@ -124,7 +122,6 @@ function Dashboard() {
               Paint and Speed Index.
             </Typography>
             <Typography> - Uses static metadata for SEO.</Typography>
-
             <Typography>
               <b>Disadvantages</b>
             </Typography>
@@ -134,7 +131,6 @@ function Dashboard() {
               ideal for SEO because search engines might not wait for the
               content to load.
             </Typography>
-
             <br />
             <Typography variant="h6" component="h2">
               <mark>grocery/list/</mark>- this page uses server-side rendering
@@ -155,7 +151,6 @@ function Dashboard() {
               - It allows for dynamic metadata, such as custom page titles,
               which are fetched from the server.
             </Typography>
-
             <Typography>
               <b>Disadvantages</b>
             </Typography>
@@ -167,7 +162,6 @@ function Dashboard() {
               - It decreases performance metrics like First Contentful Paint and
               Speed Index due to the time needed to fetch data.
             </Typography>
-
             <br />
             <Typography variant="h6" component="h2">
               Caching Strategy
@@ -263,7 +257,6 @@ function Dashboard() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-
         <Accordion>
           <AccordionSummary expandIcon={<ExpandMore />}>
             <Typography variant="h5" component="h2">
@@ -272,13 +265,13 @@ function Dashboard() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography variant="body1">
-              I’ve integrated Jest to write unit tests, ensuring the
-              functionality and reliability of the code.
+              I integrated Jest to write unit tests to ensure the functionality
+              and reliability of the code.
             </Typography>
             <br />
             <Typography>
-              - I wrote a couple of tests for both React components and
-              JavaScript functions.
+              - I wrote several tests for both React components and JavaScript
+              functions.
             </Typography>
             <Typography>
               - For the <mark>Header</mark> component, I wrote a snapshot test
@@ -290,16 +283,34 @@ function Dashboard() {
               various cases.
             </Typography>
             <Typography>
+              - I added a snapshot test for the Loading component to ensure it
+              renders correctly and remains unchanged during modifications.
+            </Typography>
+            <Typography>
               - I also wrote tests for the <mark>getProgressList</mark> function
               to ensure that all responses are handled as expected.
             </Typography>
+            <br />
+            <Typography>
+              Moreover, I added action-related component testing:
+            </Typography>
+            <Typography>
+              - <b>Testing props</b>: I verified that components receive and
+              correctly use the props passed to them.
+            </Typography>
+            <Typography>
+              - <b>Testing actions</b>: I checked the functionality of buttons
+              and other interactive elements, using Jest to test button clicks
+              and ensuring the correct methods are called in response to user
+              interactions.
+            </Typography>
+            <br />
             <Typography variant="body1">
-              Regarding test structure, I’m aware of the debate on whether to
-              place test files near the component or in a separate tests folder.
-              In my opinion, placing the test files near the related component
-              is more efficient. It makes it easier to find and maintain tests
-              without spending extra time searching for them in a separate
-              folder.
+              Regarding test file organization, I’m aware of the ongoing debate
+              about whether to place test files near the component or in a
+              separate tests folder. In my opinion, placing the test files next
+              to the component is more convenient as it saves time looking for
+              the corresponding test files.
             </Typography>
           </AccordionDetails>
         </Accordion>
