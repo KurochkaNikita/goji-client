@@ -88,6 +88,12 @@ function Dashboard() {
                   secondary="This folder handles API interactions. It contains an index.js file that serves as the main fetcher, abstracting the underlying implementation. Currently, Axios is used, but the architecture allows for easily integrating different providers in the future. The grocery.js file contains all the API requests related to the application’s functionality."
                 />
               </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="utilities"
+                  secondary="This folder contains helper functions. I created this folder to move logic out of components that can be reused in the future if needed. It helps keep the components lightweight and focuses them on rendering and user interactions, while more complex or repetitive logic is abstracted into these helper functions."
+                />
+              </ListItem>
             </List>
           </AccordionDetails>
         </Accordion>
@@ -254,6 +260,46 @@ function Dashboard() {
               This would not only improve the user experience but also help in
               identifying and resolving backend issues quickly by providing
               real-time insights into failures.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Typography variant="h5" component="h2">
+              6. Testing
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography variant="body1">
+              I’ve integrated Jest to write unit tests, ensuring the
+              functionality and reliability of the code.
+            </Typography>
+            <br />
+            <Typography>
+              - I wrote a couple of tests for both React components and
+              JavaScript functions.
+            </Typography>
+            <Typography>
+              - For the <mark>Header</mark> component, I wrote a snapshot test
+              to ensure the UI remains consistent.
+            </Typography>
+            <Typography>
+              - For the <mark>Breadcrumbs</mark> component, I wrote snapshot
+              tests with different parameters to verify it renders correctly in
+              various cases.
+            </Typography>
+            <Typography>
+              - I also wrote tests for the <mark>getProgressList</mark> function
+              to ensure that all responses are handled as expected.
+            </Typography>
+            <Typography variant="body1">
+              Regarding test structure, I’m aware of the debate on whether to
+              place test files near the component or in a separate tests folder.
+              In my opinion, placing the test files near the related component
+              is more efficient. It makes it easier to find and maintain tests
+              without spending extra time searching for them in a separate
+              folder.
             </Typography>
           </AccordionDetails>
         </Accordion>
