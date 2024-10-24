@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-
-import GroceryLists from "pages/GroceryLists";
+import GroceryLists from "screens/GroceryLists";
 
 export const metadata: Metadata = {
   title: "Gojl - Grocery Lists",

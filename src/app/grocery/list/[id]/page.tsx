@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 import groceryAPI from "api/grocery";
 import notFound from "app/not-found";
+import GroceryList from "screens/GroceryList";
 import { TNextPage } from "types";
-
-import GroceryList from "pages/GroceryList";
 
 const loadingDate = async (id: string) => {
   return groceryAPI.getListById(id);

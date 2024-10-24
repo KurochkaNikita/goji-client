@@ -54,7 +54,7 @@ function Dashboard() {
               </ListItem>
               <ListItem>
                 <ListItemText
-                  primary="pages"
+                  primary="screens"
                   secondary="This folder contains the content of each page, along with its styles and specific components. Some pages also have their own components folder, which includes specialized components used exclusively on that page. This approach helps maintain a modular design by isolating page-specific logic and avoiding clutter in the shared component folder."
                 />
               </ListItem>

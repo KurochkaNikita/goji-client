@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid2";
 import { useQuery } from "@tanstack/react-query";
 import groceryAPI from "api/grocery";
+import Title from "screens/GroceryList/components/Title";
 import { TBreadcrumbs } from "types";
 import { TGroceryList } from "types/grocery";
 
@@ -13,7 +14,6 @@ import Breadcrumbs from "components/Breadcrumbs";
 import Loading from "components/Loading";
 import queryKey from "constants/query";
 import { GROCERY_LISTS } from "constants/route";
-import Title from "pages/GroceryList/components/Title";
 
 import Actions from "./components/Actions";
 import ListItems from "./components/ListItems";
