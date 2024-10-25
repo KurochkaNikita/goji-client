@@ -75,7 +75,7 @@ function Modal(props: IModal) {
     >
       <Box sx={classes.modal}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          {itemId ? "Create a new item" : "Update the task"}
+          {itemId ? "Update the task" : "Create a new item"}
         </Typography>
         {open && (
           <Form

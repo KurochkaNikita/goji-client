@@ -32,7 +32,7 @@ function Form(props: IForm) {
         required
         {...register("title")}
         id="outlined-basic"
-        label="Outlined"
+        label="Title"
         variant="outlined"
         margin="dense"
         error={!!errors.title}
@@ -42,7 +42,7 @@ function Form(props: IForm) {
       <TextField
         {...register("amount")}
         id="outlined-basic"
-        label="Outlined"
+        label="Price"
         variant="outlined"
         margin="normal"
         error={!!errors.amount}
